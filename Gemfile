@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'jquery-rails', '~> 2.0.1'
-gem 'haml-rails',   '~> 0.3.4'
-gem 'bcrypt-ruby',  '~> 3.0.0'
-gem 'twitter',      '~> 2.1.0'
+gem 'jquery-rails',     '~> 2.0.1'
+gem 'haml-rails',       '~> 0.3.4'
+gem 'omniauth-twitter', '~> 0.0.8'
+gem 'twitter',          '~> 2.1.0'
 
 group :production do
   gem 'pg', '0.13.2'
