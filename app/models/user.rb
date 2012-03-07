@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # auth_secret
   # email
   
+  # attr_accessible :email, :name
+  
   
   def tweet(message)
     Twitter::Client.new(

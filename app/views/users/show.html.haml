@@ -1,0 +1,9 @@
+.well
+  = image_tag current_user.image, :class=>'avatar'
+
+  %h1= current_user.name
+  %h2= "@#{current_user.username}"
+  %p= current_user.email.blank? ? '&nbsp;'.html_safe : current_user.email
+  
+  %a.btn{href:edit_user_path} Edit
+  = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'

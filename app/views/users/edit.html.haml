@@ -1,0 +1,26 @@
+= form_for current_user, html: { :class => 'form-horizontal' } do |f|
+  %fieldset
+    %legend Change your settings
+    
+    .control-group
+      = f.label :username, 'Twitter Username', :class => 'control-label'
+      .controls
+        = f.text_field :username, :class => 'text_field', disabled:true
+        %p.help-inline You cannot change your twitter username
+
+    .control-group
+      = f.label :name, :class => 'control-label'
+      .controls
+        = f.text_field :name, :class => 'text_field'
+    
+    .control-group
+      = f.label :email, :class => 'control-label'
+      .controls
+        = f.text_field :email, :class => 'text_field'
+    
+    .form-actions
+      = f.submit 'Update Your Settings', :class => 'btn btn-primary'
+      = link_to 'Cancel', user_path, :class => 'btn'
+      
+      = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger pull-right'
+      

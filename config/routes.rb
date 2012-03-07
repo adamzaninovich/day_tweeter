@@ -1,5 +1,6 @@
 DayTweeter::Application.routes.draw do
-  get "pages/home"
+
+  root to: 'pages#home'
 
   get 'auth/failure',            to: 'sessions#denied'
   get 'auth/twitter',                                    as: :twitter_auth
@@ -8,5 +9,6 @@ DayTweeter::Application.routes.draw do
   
   get '/not/implemented/yet', to: 'pages#placeholder', as: :placeholder
   
-  root to: 'pages#home'
+  resource :user, only: [:show, :edit, :update, :destroy]
+  
 end

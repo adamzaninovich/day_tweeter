@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   def create # do sad path
     @user = User.where(twitter_id: twitter_id).first_or_initialize(twitter_attributes)
     if @user.new_record?
-      next_page = placeholder_path
-      notice = "Welcome to Day Tweeter! Please update your settings."
       @user.save!
+      next_page = edit_user_path(@user)
+      notice = "Welcome to Day Tweeter! Please update your settings."
     else
       next_page = root_path
       notice = "Signed in as @#{@user.username}. Welcome back!"
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     {
       username:     auth_hash[:info][:nickname],
       name:         auth_hash[:info][:name],
-      image:        auth_hash[:info][:image],
+      image:        auth_hash[:info][:image].gsub(/normal\.jpg/i,'reasonably_small.jpg'),
       auth_token:   auth_hash[:credentials][:token],
       auth_secret:  auth_hash[:credentials][:secret]
     }
