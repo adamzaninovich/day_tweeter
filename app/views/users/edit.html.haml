@@ -20,7 +20,7 @@
     
     .form-actions
       = f.submit 'Update Your Settings', :class => 'btn btn-primary'
-      = link_to 'Cancel', user_path, :class => 'btn'
+      = link_to 'Cancel', account_path, :class => 'btn'
       
       = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger pull-right'
       

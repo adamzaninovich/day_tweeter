@@ -1,7 +1,10 @@
 DayTweeter::Application.routes.draw do
 
   root to: 'pages#home'
-
+  
+  get 'my/account',       to: 'users#show', as: :account
+  get 'my/account/edit',  to: 'users#edit', as: :edit_account
+  
   get 'auth/failure',            to: 'sessions#denied'
   get 'auth/twitter',                                    as: :twitter_auth
   get 'auth/:provider/callback', to: 'sessions#create',  as: :twitter_auth_callback

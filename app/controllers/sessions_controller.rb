@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     @user = User.where(twitter_id: twitter_id).first_or_initialize(twitter_attributes)
     if @user.new_record?
       @user.save!
-      next_page = edit_user_path(@user)
+      next_page = edit_account_path
       notice = "Welcome to Day Tweeter! Please update your settings."
     else
-      next_page = root_path
+      next_page = account_path
       notice = "Signed in as @#{@user.username}. Welcome back!"
     end
     sign_in! @user
