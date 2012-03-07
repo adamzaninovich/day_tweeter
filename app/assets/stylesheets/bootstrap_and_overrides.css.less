@@ -1,4 +1,9 @@
 @import "twitter/bootstrap/bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
@@ -15,3 +20,48 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+@navbarBackgroundHighlight: #168AC7;
+@navbarBackground: darken(@navbarBackgroundHighlight, 7%);
+
+@navbarText: lighten(@navbarBackgroundHighlight, 40%);
+@navbarLinkColor: lighten(@navbarBackgroundHighlight, 40%);
+
+.hero-unit {
+  padding: 10px;
+  background: none;
+  text-align: center;
+  p {
+    margin-top: 20px;
+  }
+  .get-started {
+    font-size: 20px;
+    font-weight: normal
+  }
+}
+
+.navbar {
+  .brand {
+    // font-weight: bold;
+    color: darken(@navbarBackgroundHighlight, 7%);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+  }
+  
+  a img {
+    .border-radius(4px);
+    position: absolute;
+    top: 6px;
+    left:-25px;
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+  }
+  
+}
+
+
+
+
+
+
+

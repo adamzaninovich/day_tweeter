@@ -7,6 +7,8 @@ gem 'haml-rails',       '~> 0.3.4'
 gem 'omniauth-twitter', '~> 0.0.8'
 gem 'twitter',          '~> 2.1.0'
 
+gem 'thin'
+
 group :production do
   gem 'pg', '0.13.2'
 end
@@ -19,16 +21,19 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'launchy'
   gem 'spork'
-  gem 'vcr'
-  gem 'webmock'
-  gem 'timecop'
   gem 'autotest',            require: false
   gem 'autotest-rails-pure', require: false
   gem 'autotest-fsevent',    require: false
   gem 'autotest-growl',      require: false
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'timecop'
 end
 
 group :assets do

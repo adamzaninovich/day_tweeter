@@ -1,0 +1,16 @@
+.hero-unit.span8
+  %h1 Welcome to Day Tweeter!
+  %p
+    Have a lot of tweets to send but don't want them all clumped together?
+    %br
+    We'll tweet them out at regular intervals throughout the day.
+  
+  - if signed_in?
+    %p You are signed in!
+    %p
+      = link_to "Get started!", placeholder_path, :class=>'get-started btn btn-success btn-large'
+  - else
+    %p To get started, click this ridiculous button:
+    %p
+      = link_to twitter_auth_path, :class=>'' do
+        = image_tag 'sign_in_with_twitter.png'

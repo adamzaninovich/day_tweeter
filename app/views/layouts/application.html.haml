@@ -9,6 +9,11 @@
     = csrf_meta_tags
     %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
   %body
-    -#= render partial: 'shared/navbar'
+    = render partial: 'shared/navbar'
     .container
-      = yield
+      .row
+        .span10
+          = render partial: 'shared/display_flash'
+          = yield
+        .span2
+          = render partial: 'shared/sidebar'

@@ -1,0 +1,38 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{data:{toggle:'collapse', target:'.nav-collapse'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Day Tweeter', root_path, :class=>'brand'
+      .nav-collapse
+        %ul.nav
+          / %li
+          /   = link_to root_path do
+          /     %i.icon-white.icon-home
+          /     Home
+          / %li= link_to 'Something Else'
+        %ul.nav.pull-right
+          - if signed_in?
+            %li.dropdown
+              %a.dropdown-toggle{href:'#', data:{toggle:'dropdown'}}
+                = image_tag current_user.image
+                = '@' << current_user.username
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to placeholder_path do
+                    %i.icon-edit
+                    Settings
+                %li.divider
+                %li
+                  = link_to signout_path do
+                    %i.icon-off
+                    Sign Out
+          - else
+            %li
+              = link_to twitter_auth_path, :class=>'' do
+                %i.icon-white.icon-user
+                Sign in with Twitter
+              
