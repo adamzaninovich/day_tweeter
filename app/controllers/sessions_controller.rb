@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     {
       username:     auth_hash[:info][:nickname],
       name:         auth_hash[:info][:name],
-      image:        auth_hash[:info][:image].gsub(/normal\.jpg/i,'reasonably_small.jpg'),
+      image:        auth_hash[:info][:image].gsub(/_normal\./,'_reasonably_small.'),
       auth_token:   auth_hash[:credentials][:token],
       auth_secret:  auth_hash[:credentials][:secret]
     }
