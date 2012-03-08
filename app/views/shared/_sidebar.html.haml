@@ -5,19 +5,18 @@
       = link_to root_path do
         %i.icon-home
         Home
-    %li
-      = link_to placeholder_path do
-        %i.icon-pencil
-        Something
-    %li
-      = link_to placeholder_path do
-        %i.icon-flag
-        Something
-    %li
-      = link_to placeholder_path do
-        %i.icon-glass
-        Something
-    %li
-      = link_to placeholder_path do
-        %i.icon-trash
-        Something
+    - if signed_in?
+      %li
+        = link_to edit_account_path do
+          %i.icon-edit
+          Settings
+      %li
+        = link_to signout_path do
+          %i.icon-off
+          Sign Out
+    - else
+      %li
+        = link_to twitter_auth_path do
+          %i.icon-user
+          Sign in
+      

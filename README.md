@@ -2,10 +2,12 @@
 
 ## Features
 
-### First Iteration
-
+### Done
 * user signs in with twitter account
 * user can submit tweets
+
+### First Iteration
+
 * user can set start and stop times
 * tweets will be spread out between start and stop times
 * system will submit tweets to twitter

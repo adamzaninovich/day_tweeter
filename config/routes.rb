@@ -13,5 +13,6 @@ DayTweeter::Application.routes.draw do
   get '/not/implemented/yet', to: 'pages#placeholder', as: :placeholder
   
   resource :user, only: [:show, :edit, :update, :destroy]
+  resources :tweets
   
 end

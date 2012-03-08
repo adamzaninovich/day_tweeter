@@ -42,7 +42,7 @@ body {
 
 .navbar {
   .brand {
-    // font-weight: bold;
+    font-weight: bold;
     color: darken(@navbarBackgroundHighlight, 7%);
     text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
   }
@@ -60,12 +60,26 @@ body {
 }
 
 .avatar {
-  .border-radius(6px);
+  .border-radius(5px);
   height: 128px;
   width: 128px;
   display: inline-block;
   float: left;
   margin-right: 20px;
+}
+
+table {
+  .center {
+    text-align: center;
+  }
+  .tweet_body {
+    .ie7-inline-block();
+    display: inline-block;
+    width: 650px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 

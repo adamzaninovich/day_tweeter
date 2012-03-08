@@ -5,5 +5,63 @@
   %h2= "@#{current_user.username}"
   %p= current_user.email.blank? ? '&nbsp;'.html_safe : current_user.email
   
-  = link_to 'Settings', edit_account_path, :class=>'btn'
+  = link_to 'Account Settings', edit_account_path, :class=>'btn'
   = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'
+
+= form_for Tweet.new, html:{:class=>'well form-inline'} do |f|
+  = f.text_field :body, rows:'1', placeholder:'Compose new Tweet...', :class=>'span8'
+  = f.submit 'Save Tweet', :class=>'btn'
+
+- if current_user.tweets.any?
+  - if current_user.tweets.unpublished.any?
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th{colspan:4}
+            %h6 Unpublished Tweets
+      %tbody
+        - current_user.tweets.unpublished.each do |tweet|
+          %tr
+            %td.span10
+              .tweet_body
+                = tweet.body
+              %span.pull-right
+                %a.btn{rel:'tooltip', title:"Edit this tweet."}
+                  %i.icon-pencil
+                  Edit
+            %td.center
+              - if tweet.active?
+                %a.btn.btn-primary{rel:'tooltip', title:"This tweet is active and will be published. Click to disable."}
+                  %i.icon-white.icon-ok
+              - else
+                %a.btn{rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable."}
+                  %i.icon-remove
+            %td.center
+              %a.btn.btn-success{rel:'tooltip', title:"Manually publish this tweet to Twitter."} Publish
+            %td.center
+              = link_to tweet, confirm: 'Are you sure?', method: :delete, :class=>'btn btn-danger' do
+                %i.icon-trash.icon-white
+
+  - if current_user.tweets.published.any?
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th
+            %h6 Published Tweets
+          %th
+            %h6 Published
+      %tbody
+        - current_user.tweets.published.each do |tweet|
+          %tr
+            %td.span10
+              .tweet_body
+                = tweet.body
+            %td= tweet.published_at.to_formatted_s(:short_ordinal_with_time)
+    %a.btn.btn-danger.pull-right{rel:'tooltip', title:"Remove all published tweets"} Clear Published
+- else
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th{colspan:4}
+          %h6 Please add some Tweets above
+    %tbody
