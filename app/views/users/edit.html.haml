@@ -5,18 +5,26 @@
     .control-group
       = f.label :username, 'Twitter Username', :class => 'control-label'
       .controls
-        = f.text_field :username, :class => 'text_field', disabled:true
-        %p.help-inline You cannot change your twitter username
+        .input-prepend
+          .add-on @
+          = f.text_field :username, :class => 'text_field', disabled:true
+        %p.help-block You cannot change your twitter username
 
     .control-group
       = f.label :name, :class => 'control-label'
       .controls
-        = f.text_field :name, :class => 'text_field'
+        .input-prepend
+          .add-on
+            %i.icon-user
+          = f.text_field :name, :class => 'text_field'
     
     .control-group
       = f.label :email, :class => 'control-label'
       .controls
-        = f.text_field :email, :class => 'text_field'
+        .input-prepend
+          .add-on
+            %i.icon-envelope
+          = f.text_field :email, :class => 'text_field'
     
     .form-actions
       = f.submit 'Update Your Settings', :class => 'btn btn-primary'

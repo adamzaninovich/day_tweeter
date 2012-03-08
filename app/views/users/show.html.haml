@@ -1,12 +1,16 @@
-.well
+.well.clearfix
   = image_tag current_user.image, :class=>'avatar'
-
-  %h1= current_user.name
-  %h2= "@#{current_user.username}"
-  %p= current_user.email.blank? ? '&nbsp;'.html_safe : current_user.email
-  
-  = link_to 'Account Settings', edit_account_path, :class=>'btn'
-  = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'
+  .account-info.pull-left
+    %h1= current_user.name
+    %h2= "@#{current_user.username}"
+    %p= current_user.email.blank? ? '&nbsp;'.html_safe : current_user.email
+    .btn-group
+      = link_to 'Account Settings', edit_account_path, :class=>'btn'
+      %a.btn.btn-inverse.dropdown-toggle{href:'#', data:{toggle:'dropdown'}}
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to 'Edit your settings', edit_account_path
+        %li= link_to 'Delete your account', user_path, confirm: 'Are you sure?', method: :delete
 
 = form_for Tweet.new, html:{:class=>'well form-inline'} do |f|
   = f.text_field :body, rows:'1', placeholder:'Compose new Tweet...', :class=>'span8'
