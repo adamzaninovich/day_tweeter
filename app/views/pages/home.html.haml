@@ -1,9 +1,6 @@
 .hero-unit.span8
-  %h1 Welcome to Day Tweeter!
-  %p
-    Have a lot of tweets to send but don't want them all clumped together?
-    %br
-    We'll tweet them out at regular intervals throughout the day.
+  %h1= t ".header", default: 'Welcome to Day Tweeter!'
+  %p= t ".tagline", default: "Have a lot of tweets to send but don't want them all clumped together?<br/>We'll tweet them out at regular intervals throughout the day."
   
   - if signed_in?
     %p You are signed in!
