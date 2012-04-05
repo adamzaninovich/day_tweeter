@@ -8,6 +8,8 @@
 
 ### First Iteration
 
+* tweets can be published manually
+* tweets can be disabled and they will be skipped
 * user can set start and stop times
 * tweets will be spread out between start and stop times
 * system will submit tweets to twitter
@@ -25,12 +27,3 @@
 
 * support multiple accounts
 
-## Models
-
-### User
-
-* name
-* email
-* username
-* oauth_token
-* oauth_secret
