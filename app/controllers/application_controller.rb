@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  before_filter :set_timezone
+  
   helper_method :current_user, :signed_in?
   
   private
+  
+  def set_timezone
+    if signed_in?
+      Time.zone = current_user.time_zone || DayTweeter::Application.config.time_zone      
+    end
+  end
   
   def require_user!
     unless signed_in?

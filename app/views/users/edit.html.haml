@@ -26,6 +26,11 @@
             %i.icon-envelope
           = f.text_field :email, :class => 'text_field'
     
+    .control-group
+      = f.label :time_zone, :class => 'control-label'
+      .controls
+        = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {default:"Pacific Time (US & Canada)"}, {:class => 'span3'}
+    
     .form-actions
       = f.submit 'Update Your Settings', :class => 'btn btn-primary'
       = link_to 'Cancel', account_path, :class => 'btn'

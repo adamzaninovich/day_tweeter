@@ -60,7 +60,8 @@
             %td.span10
               .tweet_body
                 = tweet.body
-            %td= tweet.published_at.to_formatted_s(:short_ordinal_with_time)
+            %td
+              %a.btn.btn-inverse.disabled{rel:'tooltip', title:tweet.published_at.to_formatted_s(:verbose)}= tweet.published_at.to_formatted_s(:short_ordinal_with_time_and_zone)
     %a.btn.btn-danger.pull-right{rel:'tooltip', title:"Remove all published tweets"} Clear Published
 - else
   %table.table.table-striped.table-bordered
