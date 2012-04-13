@@ -1,6 +1,5 @@
 class TweetsController < ApplicationController
-
-
+  
   def create
     @tweet = current_user.tweets.build(params[:tweet])
     @tweet.active = true
@@ -10,12 +9,25 @@ class TweetsController < ApplicationController
     # else if it's after, Date.tomorrow
     
     if @tweet.save!
-      redirect_to account_path, notice: 'Tweet was successfully created.'
+      redirect_to account_path, notice: 'Tweet was successfully added'
     else
       render action: :new
     end
   end
-
+  
+  def publish
+    @tweet = current_user.tweets.unpublished.where(id: params[:id]).first
+    if @tweet.present?
+      if @tweet.publish!
+        redirect_to account_path, notice: 'Tweet was published'
+      else
+        redirect_to account_path, alert: 'Unable to publish tweet'
+      end
+    else
+      redirect_to account_path, alert: 'That tweet does not exist'
+    end
+  end
+  
   # PUT /tweets/1
   # PUT /tweets/1.json
   # def update

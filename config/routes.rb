@@ -2,8 +2,8 @@ DayTweeter::Application.routes.draw do
 
   root to: 'pages#home'
   
-  get 'my/account',       to: 'users#show', as: :account
-  get 'my/account/edit',  to: 'users#edit', as: :edit_account
+  get 'my/account',           to: 'users#show', as: :account
+  get 'my/account/settings',  to: 'users#edit', as: :account_settings
   
   get 'auth/failure',            to: 'sessions#denied'
   get 'auth/twitter',                                    as: :twitter_auth
@@ -11,8 +11,13 @@ DayTweeter::Application.routes.draw do
   get 'signout',                 to: 'sessions#destroy', as: :signout
   
   get '/not/implemented/yet', to: 'pages#placeholder', as: :placeholder
-  
+    
   resource :user, only: [:show, :edit, :update, :destroy]
-  resources :tweets
+  
+  resources :tweets, only: [:create, :update, :destroy] do
+    member do
+      get 'publish'
+    end
+  end
   
 end
