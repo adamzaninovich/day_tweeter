@@ -3,16 +3,18 @@
 ## Features
 
 ### Done
+
 * user signs in with twitter account
 * user can submit tweets
+* tweets can be published manually
 
 ### First Iteration
 
-* tweets can be published manually
-* tweets can be disabled and they will be skipped
+* user can pause entire system (save in user model?)
 * user can set start and stop times
 * tweets will be spread out between start and stop times
 * system will submit tweets to twitter
+* tweets can be disabled and they will be skipped
 
 ### Second Iteration
 
