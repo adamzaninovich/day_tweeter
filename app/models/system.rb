@@ -58,11 +58,13 @@ class System < ActiveRecord::Base
   end
   
   def start_time
-    Time.parse "#{start_time_hour}:#{start_time_min}"
+    # Time.zone = time_zone
+    Time.zone.parse "#{start_time_hour}:#{start_time_min}"
   end
   
   def stop_time
-    Time.parse "#{stop_time_hour}:#{stop_time_min}"
+    # Time.zone = time_zone
+    Time.zone.parse "#{stop_time_hour}:#{stop_time_min}"
   end
   
 end

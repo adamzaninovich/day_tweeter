@@ -4,6 +4,16 @@ class Tweet < ActiveRecord::Base
   scope :unpublished, where(published:false)
   scope :published, where(published:true)
   
+  def enable!
+    self.active = true
+    self.save!
+  end
+  
+  def disable!
+    self.active = false
+    self.save!
+  end
+  
   def publish!
     begin
       client = Twitter::Client.new(oauth_token:user.auth_token, oauth_token_secret:user.auth_secret)

@@ -22,7 +22,9 @@
       %a.btn.btn-inverse.dropdown-toggle{href:'#', data:{toggle:'dropdown'}}
         %span.caret
       %ul.dropdown-menu
-        %li= link_to 'Edit your settings', account_settings_path
+        %li
+          = link_to account_settings_path do
+            %strong Edit your settings
         %li= link_to 'Delete your account', user_path, confirm: 'Are you sure?', method: :delete
   .system-settings-summary.pull-left.span4
     %h2 Summary of Settings
@@ -31,10 +33,10 @@
       %strong= current_user.system.daily_max
       tweets from your unpublished list. These will be evenly spaced throughout the day beginning at
       = succeed ',' do
-        %strong= current_user.system.start_time_hour.to_s << current_user.system.start_time.strftime(':%M %Z')
+        %strong= current_user.system.start_time.hour.to_s << current_user.system.start_time.strftime(':%M %Z')
       and ending at
       = succeed '.' do
-        %strong= current_user.system.stop_time_hour.to_s << current_user.system.stop_time.strftime(':%M %Z')
+        %strong= current_user.system.stop_time.hour.to_s << current_user.system.stop_time.strftime(':%M %Z')
       Any tweets that were not published will be rolled over to the next day.
   .span2
     %h2 Status
@@ -77,11 +79,11 @@
                   Edit
             %td.center
               - if tweet.active?
-                %a.btn.btn-primary{rel:'tooltip', title:"This tweet is active and will be published. Click to disable."}
-                  %i.icon-white.icon-ok
+                = link_to disable_tweet_path(tweet), :class=>%w[btn btn-primary], rel:'tooltip', title:"This tweet is active and will be published. Click to disable." do
+                  %i.icon-ok.icon-white
               - else
-                %a.btn{rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable."}
-                  %i.icon-remove
+                = link_to enable_tweet_path(tweet), :class=>'btn', rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable." do
+                  %i.icon-minus
             %td.center
               = link_to 'Publish', publish_tweet_path(tweet), :class=>'btn btn-success', rel:'tooltip', title:"Manually publish this tweet to Twitter."
             %td.center
@@ -103,7 +105,7 @@
               .tweet_body
                 = tweet.body
             %td.center
-              %a.btn.btn-inverse.disabled{rel:'tooltip', title:tweet.published_at.to_formatted_s(:verbose)}= tweet.published_at.to_formatted_s(:short_ordinal_with_time_and_zone)
+              %a.btn.btn-inverse.disabled{rel:'tooltip', title:tweet.published_at.to_formatted_s(:verbose)}= tweet.published_at.to_formatted_s(:short_ordinal_with_time)
     %a.btn.btn-danger.pull-right{rel:'tooltip', title:"Remove all published tweets"} Clear Published
 - else
   %table.table.table-striped.table-bordered

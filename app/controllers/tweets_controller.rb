@@ -1,5 +1,31 @@
 class TweetsController < ApplicationController
   
+  def disable
+    @tweet = current_user.tweets.unpublished.where(id: params[:id]).first
+    if @tweet.present?
+      if @tweet.disable!
+        redirect_to account_path
+      else
+        redirect_to account_path, alert: 'Unable to disable tweet'
+      end
+    else
+      redirect_to account_path, alert: 'That tweet does not exist'
+    end
+  end
+  
+  def enable
+    @tweet = current_user.tweets.unpublished.where(id: params[:id]).first
+    if @tweet.present?
+      if @tweet.enable!
+        redirect_to account_path
+      else
+        redirect_to account_path, alert: 'Unable to enable tweet'
+      end
+    else
+      redirect_to account_path, alert: 'That tweet does not exist'
+    end
+  end
+  
   def create
     @tweet = current_user.tweets.build(params[:tweet])
     @tweet.active = true

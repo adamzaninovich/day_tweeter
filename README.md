@@ -10,17 +10,19 @@
 * user can set start and stop times
 * user can set a daily limit
 * user can pause entire system
+* tweets can be disabled and reenabled
 
 ### First Iteration
 
 * user can edit tweets
 * tweets will be spread out between start and stop times
 * system will submit tweets to twitter
-* tweets can be disabled and they will be skipped
 * tweets exceeding daily limit will carry over to next day
+* disabled tweets are skipped when publishing
 
 ### Second Iteration
 
+* drag to reorder
 * user can opt to receive an email summary at the end of the day
   * which tweets were sent when
   * which tweets were carried over
