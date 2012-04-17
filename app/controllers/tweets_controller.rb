@@ -56,19 +56,19 @@ class TweetsController < ApplicationController
   
   # PUT /tweets/1
   # PUT /tweets/1.json
-  # def update
-  #   @tweet = Tweet.find(params[:id])
-  # 
-  #   respond_to do |format|
-  #     if @tweet.update_attributes(params[:tweet])
-  #       format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: "edit" }
-  #       format.json { render json: @tweet.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    @tweet = Tweet.find(params[:id])
+  
+    respond_to do |format|
+      if @tweet.update_attributes(params[:tweet])
+        format.html { redirect_to account_path }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to account_path, alert:'Error saving tweet' }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @tweet = Tweet.find(params[:id])

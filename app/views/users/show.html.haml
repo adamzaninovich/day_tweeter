@@ -64,30 +64,42 @@
     %table.table.table-striped.table-bordered
       %thead
         %tr
-          %th{colspan:4}
+          %th
             %h6 Unpublished Tweets
       %tbody
         - current_user.tweets.unpublished.each do |tweet|
           %tr
-            %td.span8
-              .tweet_body
+            
+            %td.span10
+              .tweet-edit.hide
+                = form_for tweet, method: :put, html:{:class=>'form-inline'} do |f|
+                  = f.text_field :body, placeholder:'Compose new Tweet...', :class=>'span7'
+                  %button.btn.tooltip-link{type:'submit', title:'Save your changes'}
+                    %i.icon-ok
+                  %a.btn.btn-inverse.cancel-edit{:href => "#cancel", rel:'tooltip', title:'Discard changes'}
+                    %i.icon-remove.icon-white
+              
+              .tweet-body
                 = tweet.body
+            
             %td.span2.edit-cell
               %span.pull-right
-                %a.btn{rel:'tooltip', title:"Edit this tweet."}
+                %a.btn.edit-tweet{rel:'tooltip', title:"Edit this tweet."}
                   %i.icon-pencil
                   Edit
+            
+            
             %td.center
               - if tweet.active?
                 = link_to disable_tweet_path(tweet), :class=>%w[btn btn-primary], rel:'tooltip', title:"This tweet is active and will be published. Click to disable." do
-                  %i.icon-ok.icon-white
+                  %i.icon-time.icon-white
               - else
                 = link_to enable_tweet_path(tweet), :class=>'btn', rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable." do
                   %i.icon-minus
             %td.center
-              = link_to 'Publish', publish_tweet_path(tweet), :class=>'btn btn-success', rel:'tooltip', title:"Manually publish this tweet to Twitter."
+              = link_to 'Publish', publish_tweet_path(tweet), :class=>'btn btn-success tooltip-link', title:"Manually publish this tweet to Twitter."
             %td.center
-              = link_to tweet, confirm: 'Are you sure?', method: :delete, :class=>'btn btn-danger' do
+              = link_to tweet, confirm: 'Are you sure?', method: :delete, :class=>'btn btn-danger tooltip-link', title:'Remove this tweet' do
                 %i.icon-trash.icon-white
 
   - if current_user.tweets.published.any?

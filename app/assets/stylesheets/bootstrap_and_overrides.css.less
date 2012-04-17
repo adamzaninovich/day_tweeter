@@ -76,13 +76,23 @@ table {
   .center {
     text-align: center;
   }
-  .tweet_body {
+  .tweet-body {
     .ie7-inline-block();
     display: inline-block;
     width: 650px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .tweet-edit {
+    display: none;
+    vertical-align: middle;
+    form {
+      margin-bottom: 0px !important;
+      input.btn, button.btn, a.btn {
+        margin-left: 5px;
+      }
+    }
   }
   .edit-cell {
     border-left: none !important;

@@ -11,10 +11,10 @@
 * user can set a daily limit
 * user can pause entire system
 * tweets can be disabled and reenabled
+* user can edit tweets
 
 ### First Iteration
 
-* user can edit tweets
 * tweets will be spread out between start and stop times
 * system will submit tweets to twitter
 * tweets exceeding daily limit will carry over to next day
