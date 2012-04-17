@@ -1,0 +1,28 @@
+$('#flash-container').slideUp(function(){
+
+  $('.validation-error').slideUp(function(){ $(this).remove() });
+  $('.control-group').removeClass('error');
+
+  <% if @success and !@user.errors.any? %>
+    <% flash.now[:notice] = 'Your information was successfully updated' %>
+  <% else %>
+    <% if @user.errors.any? %>
+      <% flash.now[:alert] = "#{pluralize(@user.errors.count, 'error')} prevented saving your changes" %>
+      <% @user.errors.each do |field, msg| %>
+        errorMessage = $('<span class="help-block validation-error"><%= escape_javascript msg %></span>');
+        errorMessage.hide();
+        $('.control-group.<%= escape_javascript field.to_s %>').addClass('error').find('.controls').prepend(errorMessage);
+        errorMessage.slideDown();
+      <% end %>
+    <% else %>
+      <% flash.now[:alert] = 'An unknown error prevented saving your changes' %>
+    <% end %>
+  <% end %>
+
+  $(this).html("<%= escape_javascript(render partial:'shared/display_flash') %>");
+  $(this).slideDown();
+  
+  $('.error input').focus();
+  
+});
+

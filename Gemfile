@@ -6,7 +6,7 @@ gem 'jquery-rails',       '~> 2.0.1'
 gem 'haml-rails',         '~> 0.3.4'
 gem 'omniauth-twitter',   '~> 0.0.8'
 gem 'twitter',            '~> 2.1.0'
-gem 'copycopter_client',  '~> 2.0.0'
+#gem 'copycopter_client',  '~> 2.0.0'
 
 gem 'thin'
 

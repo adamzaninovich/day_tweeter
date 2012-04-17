@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     @user = User.where(twitter_id: twitter_id).first_or_initialize(twitter_attributes)
     if @user.new_record?
       @user.save!
+      System.create!(user: @user) # create user's system
       next_page = account_settings_path
       notice = "Welcome to Day Tweeter! Please update your settings."
     else

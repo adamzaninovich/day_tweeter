@@ -14,6 +14,13 @@ DayTweeter::Application.routes.draw do
     
   resource :user, only: [:show, :edit, :update, :destroy]
   
+  resource :system, only: [:update] do
+    member do
+      get 'activate'
+      get 'pause'
+    end
+  end
+  
   resources :tweets, only: [:create, :update, :destroy] do
     member do
       get 'publish'

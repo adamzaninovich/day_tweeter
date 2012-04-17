@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   # attr_accessible :email, :name
   
   has_many :tweets
+  has_one :system
+  
+  validates_presence_of :name
   
   def tweet(message)
     Twitter::Client.new(

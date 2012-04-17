@@ -88,10 +88,19 @@ table {
     border-left: none !important;
   }
 }
-
-
-
-
-
+.danger {
+  color: lighten(@red, 15%);
+  &:hover {
+    color: @red;
+  }
+}
+form {
+  .inline-field-wrapper {
+    display: inline-block;
+  }
+  input.span1third {
+    width:20px;
+  }
+}
 
 

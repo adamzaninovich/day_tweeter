@@ -1,39 +1,88 @@
-= form_for current_user, html: { :class => 'form-horizontal' } do |f|
-  %fieldset
-    %legend Change your settings
-    
-    .control-group
-      = f.label :username, 'Twitter Username', :class => 'control-label'
-      .controls
-        .input-prepend
-          .add-on @
-          = f.text_field :username, :class => 'text_field', disabled:true
-        %p.help-block You cannot change your twitter username
+- content_for :sidebar do
+  %li.nav-header Tools
+  %li
+    = link_to user_path do
+      %i.icon-arrow-left
+      Go Back
+  %li
+    = link_to user_path, confirm: 'Are you sure?', method: :delete, :class=>'danger' do
+      %i.icon-trash
+      Delete Your Account
 
-    .control-group
-      = f.label :name, :class => 'control-label'
-      .controls
-        .input-prepend
-          .add-on
-            %i.icon-user
-          = f.text_field :name, :class => 'text_field'
+.row
+  .span5
+    = form_for current_user, remote: true, html: { :class => 'form-horizontal' } do |f|
+      %fieldset
+        %legend Personal Information
+        
+        .control-group.username
+          = f.label :username, 'Twitter Username', :class => 'control-label'
+          .controls
+            .input-prepend
+              .add-on @
+              = f.text_field :username, :class => 'text_field', disabled:true
+            %p.help-block You cannot change your twitter username
+
+        .control-group.name
+          = f.label :name, :class => 'control-label'
+          .controls
+            .input-prepend
+              .add-on
+                %i.icon-user
+              = f.text_field :name, :class => 'text_field'
     
-    .control-group
-      = f.label :email, :class => 'control-label'
-      .controls
-        .input-prepend
-          .add-on
-            %i.icon-envelope
-          = f.text_field :email, :class => 'text_field'
+        .control-group.email
+          = f.label :email, :class => 'control-label'
+          .controls
+            .input-prepend
+              .add-on
+                %i.icon-envelope
+              = f.text_field :email, :class => 'text_field'
     
-    .control-group
-      = f.label :time_zone, :class => 'control-label'
-      .controls
-        = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {default:"Pacific Time (US & Canada)"}, {:class => 'span3'}
-    
-    .form-actions
-      = f.submit 'Update Your Settings', :class => 'btn btn-primary'
-      = link_to 'Cancel', account_path, :class => 'btn'
-      
-      = link_to 'Delete Your Account', user_path, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger pull-right'
-      
+        .form-actions
+          = f.submit 'Save Your Info', :class => 'btn btn-primary', disable_with: 'Saving...'
+          /= link_to 'Cancel', account_path, :class => 'btn'
+  
+  .span5
+    = form_for current_user.system, remote: true, html: { :class => 'form-horizontal' } do |f|
+      %fieldset
+        %legend System Settings
+        
+        .control-group.time_zone
+          = f.label :time_zone, 'Your Time Zone', :class => 'control-label'
+          .controls
+            = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {default:"Pacific Time (US & Canada)"}, {:class => 'span3'}
+        
+        .control-group.start_time_hour.start_time_min
+          = f.label :start_time, 'Start Time', :class => 'control-label'
+          .controls
+            = f.text_field :start_time_hour, value: "%02d" % current_user.system.start_time_hour, maxsize:2, :class=>'span1third'
+            \:
+            = f.text_field :start_time_min, value: "%02d" % current_user.system.start_time_min, maxsize:2, :class=>'span1third'
+            %span.help-inline time in 24-hour format
+            %span.help-block
+              This is the time the system will <strong>begin</strong> publishing tweets. If a tweet is submitted after this time, it may be published immediately.
+        
+        .control-group.stop_time_hour.stop_time_min
+          = f.label :stop_time, 'Stop Time', :class => 'control-label'
+          .controls
+            = f.text_field :stop_time_hour, value: "%02d" % current_user.system.stop_time_hour, size:'1', :class=>'span1third'
+            \:
+            = f.text_field :stop_time_min, value: "%02d" % current_user.system.stop_time_min, size:'1', :class=>'span1third'
+            %span.help-inline time in 24-hour format
+            %span.help-block
+              This is the time the system will <strong>stop</strong> publishing tweets for the day. If a tweet is submitted after this time, it will be published the next day.
+            
+        .control-group.daily_max
+          = f.label :daily_max, 'Daily Maximum', :class => 'control-label'
+          .controls
+            = f.text_field :daily_max, :class=>'span1'
+            %span.help-inline tweets per day
+            %span.help-block
+              The system will publish a maximum of this many tweets in a single day. Any tweets scheduled after this number is exceeded will be rolled over to the next day.
+            %span.help-block
+              The max potential rate (mpr) limit is 1 tweet per minute and must not be exceeded. For example, if the time between your start and stop times is 15 minutes, the daily max must be 15 or less.
+  
+        .form-actions
+          = f.submit 'Save Your Settings', :class => 'btn btn-primary', disable_with: 'Saving...'
+          /= link_to 'Cancel', account_path, :class => 'btn'

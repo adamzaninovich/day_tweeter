@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413231511) do
+ActiveRecord::Schema.define(:version => 20120416233454) do
+
+  create_table "systems", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "active",          :default => true
+    t.integer  "start_time_hour", :default => 7
+    t.integer  "start_time_min",  :default => 0
+    t.integer  "stop_time_hour",  :default => 17
+    t.integer  "stop_time_min",   :default => 0
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.string   "time_zone",       :default => "Pacific Time (US & Canada)"
+    t.integer  "daily_max",       :default => 50
+  end
+
+  add_index "systems", ["user_id"], :name => "index_systems_on_user_id"
 
   create_table "tweets", :force => true do |t|
     t.integer  "user_id"
@@ -36,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20120413231511) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "email"
-    t.string   "time_zone"
   end
 
 end

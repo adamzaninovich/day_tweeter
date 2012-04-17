@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   
   def set_timezone
     if signed_in?
-      Time.zone = current_user.time_zone || DayTweeter::Application.config.time_zone      
+      Time.zone = current_user.system.time_zone || DayTweeter::Application.config.time_zone      
     end
   end
   
