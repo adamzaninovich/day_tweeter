@@ -84,23 +84,43 @@
             
             %td.span2.edit-cell
               %span.pull-right
-                %a.btn.edit-tweet{rel:'tooltip', title:"Edit this tweet."}
-                  %i.icon-pencil
-                  Edit
+                - if tweet.pending?
+                  %a.btn.disabled{rel:'tooltip', title:'This tweet is pending publishing'}
+                    %i.icon-pencil
+                    Edit
+                - else
+                  %a.btn.edit-tweet{rel:'tooltip', title:"Edit this tweet."}
+                    %i.icon-pencil
+                    Edit
             
             
             %td.center
-              - if tweet.active?
-                = link_to disable_tweet_path(tweet), :class=>%w[btn btn-primary], rel:'tooltip', title:"This tweet is active and will be published. Click to disable." do
-                  %i.icon-time.icon-white
+              - if tweet.pending?
+                - if tweet.active?
+                  %a.btn.btn-primary.disabled{rel:'tooltip', title:'This tweet is pending publishing'}
+                    %i.icon-time.icon-white
+                - else
+                  %a.btn.disabled{rel:'tooltip', title:'This tweet is pending publishing'}
+                    %i.icon-minus
               - else
-                = link_to enable_tweet_path(tweet), :class=>'btn', rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable." do
-                  %i.icon-minus
+                - if tweet.active?
+                  = link_to disable_tweet_path(tweet), :class=>%w[btn btn-primary], rel:'tooltip', title:"This tweet is active and will be published. Click to disable." do
+                    %i.icon-time.icon-white
+                - else
+                  = link_to enable_tweet_path(tweet), :class=>'btn', rel:'tooltip', title:"This tweet is disabled and will not be published. Click to enable." do
+                    %i.icon-minus
             %td.center
-              = link_to 'Publish', publish_tweet_path(tweet), :class=>'btn btn-success tooltip-link', title:"Manually publish this tweet to Twitter."
+              - if tweet.pending?
+                %a.btn.btn-success.disabled{rel:'tooltip', title:'This tweet is pending publishing'} Pending
+              - else
+                = link_to 'Publish', publish_tweet_path(tweet), :class=>'btn btn-success tooltip-link', title:"Manually publish this tweet to Twitter."
             %td.center
-              = link_to tweet, confirm: 'Are you sure?', method: :delete, :class=>'btn btn-danger tooltip-link', title:'Remove this tweet' do
-                %i.icon-trash.icon-white
+              - if tweet.pending?
+                %a.btn.btn-danger.disabled{rel:'tooltip', title:'This tweet is pending publishing'}
+                  %i.icon-trash.icon-white
+              - else
+                = link_to tweet, confirm: 'Are you sure?', method: :delete, :class=>'btn btn-danger tooltip-link', title:'Remove this tweet' do
+                  %i.icon-trash.icon-white
 
   - if current_user.tweets.published.any?
     %table.table.table-striped.table-bordered

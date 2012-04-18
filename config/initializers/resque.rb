@@ -1,7 +1,8 @@
 require 'resque_scheduler'
 
-Resque.redis = 'localhost:6379'
-Resque.redis.namespace = "resque:DayTweeter"
+# Resque.redis = 'localhost:6379'
+Resque.redis = 'redis://adamzaninovich:8350dffec5e10863d10f9a99018ad7df@drum.redistogo.com:9381'
+Resque.redis.namespace = "DayTweeter"
 
 # If you want to be able to dynamically change the schedule,
 # uncomment this line.  A dynamic schedule can be updated via the

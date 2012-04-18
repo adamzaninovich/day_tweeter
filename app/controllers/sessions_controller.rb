@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       next_page = account_settings_path
       notice = "Welcome to Day Tweeter! Please update your settings."
     else
-      next_page = account_path
+      next_page = home_path
       notice = "Signed in as @#{@user.username}. Welcome back!"
     end
     sign_in! @user

@@ -3,7 +3,11 @@
     = yield :sidebar
     %li.nav-header Navigation
     %li
-      = link_to root_path do
+      = link_to admin_resque_path do
+        %i.icon-lock
+        Admin
+    %li
+      = link_to home_path do
         %i.icon-home
         Home
     - if signed_in?

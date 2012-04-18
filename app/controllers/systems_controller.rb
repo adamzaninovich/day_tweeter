@@ -9,14 +9,14 @@ class SystemsController < ApplicationController
     @system = current_user.system
     @system.active = true
     @system.save!
-    redirect_to account_path unless request.xhr?
+    redirect_to home_path unless request.xhr?
   end
   
   def pause
     @system = current_user.system
     @system.active = false
     @system.save!
-    redirect_to account_path unless request.xhr?
+    redirect_to home_path unless request.xhr?
   end
   
 end

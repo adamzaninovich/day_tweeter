@@ -1,4 +1,4 @@
 - flash.each do |name, msg|
-  .alert{:class=>"alert-#{name == :notice ? "success" : "error"}"}
+  .flash.alert{:class=>"alert-#{name == :notice ? "success" : "error"}"}
     %a.close{data:{dismiss:'alert'}} &times;
-    = msg
+    = msg.html_safe

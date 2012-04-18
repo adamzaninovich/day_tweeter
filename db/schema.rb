@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416233454) do
+ActiveRecord::Schema.define(:version => 20120418051959) do
 
   create_table "systems", :force => true do |t|
     t.integer  "user_id"
@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(:version => 20120416233454) do
     t.boolean  "active"
     t.boolean  "published"
     t.datetime "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "pending",      :default => false
   end
 
   add_index "tweets", ["user_id"], :name => "index_tweets_on_user_id"
