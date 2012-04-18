@@ -27,6 +27,9 @@ DayTweeter::Application.routes.draw do
       get 'enable'
       get 'disable'
     end
+    collection do
+      get 'clear_published'
+    end
   end
   
   namespace :admin do

@@ -138,7 +138,9 @@
                 = tweet.body
             %td.center
               %a.btn.btn-inverse.disabled{rel:'tooltip', title:tweet.published_at.to_formatted_s(:verbose)}= tweet.published_at.to_formatted_s(:short_ordinal_with_time)
-    %a.btn.btn-danger.pull-right{rel:'tooltip', title:"Remove all published tweets"} Clear Published
+    = link_to clear_published_tweets_path, :class=>%w[btn btn-danger pull-right], rel:'tooltip', title:"Remove all published tweets" do
+      %i.icon-trash.icon-white
+      Clear Published
 - else
   %table.table.table-striped.table-bordered
     %thead

@@ -21,10 +21,12 @@
 * make the Home link in the nav point to the account page
 * rename /my/account to /home
 * rename /my/account/edit to /my/account
+* make clear published button work
 
 ### First Iteration
 
-* make clear published button work
+* deploy on VPS (instead of heroku)
+  * incorporate capistrano
 
 #### Complex worker stuff
 

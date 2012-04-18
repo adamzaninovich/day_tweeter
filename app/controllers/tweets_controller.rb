@@ -65,6 +65,11 @@ class TweetsController < ApplicationController
     end
   end
   
+  def clear_published
+    current_user.tweets.published.each(&:destroy)
+    redirect_to home_path, notice: 'Published tweets have been cleared'
+  end
+  
   # PUT /tweets/1
   # PUT /tweets/1.json
   def update
