@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    current_user.system.destroy!
-    current_user.destroy!
+    current_user.system.destroy
+    current_user.destroy
     sign_out!
     redirect_to root_path, notice: 'Your account and all pending tweets have been deleted. Thank you for using Day Tweeter!'
   end

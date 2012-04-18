@@ -44,11 +44,8 @@ class TweetsController < ApplicationController
   def publish
     @tweet = current_user.tweets.unpublished.where(id: params[:id]).first
     if @tweet.present?
-      if @tweet.publish!
-        redirect_to account_path, notice: 'Tweet was published'
-      else
-        redirect_to account_path, alert: 'Unable to publish tweet'
-      end
+      Resque.enqueue(TweetPublisher, @tweet.id)
+      redirect_to account_path, notice: 'Tweet is scheduled for publishing'
     else
       redirect_to account_path, alert: 'That tweet does not exist'
     end

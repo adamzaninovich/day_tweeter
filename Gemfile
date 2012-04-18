@@ -10,6 +10,11 @@ gem 'twitter',            '~> 2.1.0'
 
 gem 'thin'
 
+group :scheduling do
+  gem 'resque',           '~> 1.20.0'
+  gem 'resque-scheduler', '~> 1.9.9'
+end
+
 group :production do
   gem 'pg', '0.13.2'
 end

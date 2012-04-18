@@ -12,13 +12,20 @@
 * user can pause entire system
 * tweets can be disabled and reenabled
 * user can edit tweets
+* manually published tweets use resque
+* get resque scheduler working
 
 ### First Iteration
 
-* tweets will be spread out between start and stop times
+* reschedule tweets when a tweet is created or deleted
+
 * system will submit tweets to twitter
+  * tweets will be spread out between start and stop times
+  * disabled tweets are skipped when publishing
+
 * tweets exceeding daily limit will carry over to next day
-* disabled tweets are skipped when publishing
+
+* make clear published button work
 
 ### Second Iteration
 

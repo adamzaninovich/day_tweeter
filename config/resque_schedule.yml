@@ -1,0 +1,10 @@
+# remove_orphaned_systems:
+#   every: ["24h", first_in: '1m']
+#   class: OrphanSystemRemover
+#   queue: low
+#   description: "This job runs daily and clears out any system models that have been orphaned"
+
+# do_my_job:
+#   every: 3s
+#   class: MyJob
+#   description: Runs the perform method in MyJob
