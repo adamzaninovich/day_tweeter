@@ -7,8 +7,7 @@ gem 'haml-rails',         '~> 0.3.4'
 gem 'omniauth-twitter',   '~> 0.0.8'
 gem 'twitter',            '~> 2.1.0'
 #gem 'copycopter_client',  '~> 2.0.0'
-
-gem 'thin'
+gem 'capistrano',         '~> 2.12.0'
 
 group :scheduling do
   gem 'resque',           '~> 1.20.0'
@@ -16,7 +15,8 @@ group :scheduling do
 end
 
 group :production do
-  gem 'pg', '0.13.2'
+  gem 'pg',       '~> 0.13.2'
+  gem 'unicorn',  '~> 4.3.0' 
 end
 
 group :development do
@@ -25,6 +25,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'thin'
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'

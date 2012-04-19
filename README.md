@@ -1,5 +1,16 @@
 # DayTweeter
 
+## Deployment
+
+First, checkout config/deploy.rb and make sure it suits your needs. Then run some code...
+
+    ssh root@daytweeter.adamzaninovich.com 'adduser deployer --ingroup admin'
+    ssh deployer@daytweeter.adamzaninovich.com 'mkdir -p ~/.ssh'
+    cat ~/.ssh/id_rsa.pub | ssh deployer@daytweeter.adamzaninovich.com 'cat >> ~/.ssh/authorized_keys'
+    cap deploy:install
+    cap deploy:setup
+    cap deploy:cold
+
 ## Features
 
 ### Done
